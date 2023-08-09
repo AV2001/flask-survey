@@ -23,9 +23,11 @@ def home():
 
 @app.route('/questions/<int:id>')
 def question_one(id):
-    question = satisfaction_survey.questions[id].question
-    choices = satisfaction_survey.questions[id].choices
-    return render_template('questions.html', question=question, choices=choices)
+    if id <= len(responses):
+        question = satisfaction_survey.questions[id].question
+        choices = satisfaction_survey.questions[id].choices
+        return render_template('questions.html', question=question, choices=choices)
+    return redirect(f'/questions/{len(responses)}')
 
 
 @app.route('/answers', methods=['POST'])
