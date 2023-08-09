@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Setup flask debug toolbar
 app.config['SECRET_KEY'] = 'flask-survey-app'
-app.config['DEBUG_TB_INTERCEPT_REDIRECTIONS'] = False
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
 # List to keep track of user's responses
@@ -30,7 +30,7 @@ def question_one(id):
 
 @app.route('/answers', methods=['POST'])
 def get_answers():
-    answer = request.args.get('answer')
+    answer = request.form['answer']
     responses.append(answer)
     if len(responses) == len(satisfaction_survey.questions):
         return render_template('thank-you.html')
