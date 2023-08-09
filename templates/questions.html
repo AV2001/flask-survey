@@ -15,4 +15,6 @@ content %}
     {% endfor %}
     <button>Next Question</button>
 </form>
-{% endblock %}
+{% for message in get_flashed_messages() %}
+<p>{{ message }}</p>
+{% endfor %} {% endblock %}
