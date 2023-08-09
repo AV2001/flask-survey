@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import surveys, satisfaction_survey
 
@@ -30,6 +30,7 @@ def question_one(id):
         return render_template('questions.html', question=question, choices=choices)
     elif len(responses) == len(questions):
         return render_template('thank-you.html')
+    flash(f'Sorry, you cannot visit this question as it is invalid!')
     return redirect(f'/questions/{len(responses)}')
 
 
