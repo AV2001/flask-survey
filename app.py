@@ -39,11 +39,11 @@ def question_one(id):
 
 @app.route('/answers', methods=['POST'])
 def get_answers():
-    answer = request.form['answer']
-    answers = session['responses']
-    answers.append(answer)
-    session['responses'] = answers
-    if len(session['responses']) == len(satisfaction_survey.questions):
+    response = request.form['response']
+    responses = session['responses']
+    responses.append(response)
+    session['responses'] = responses
+    if len(responses) == len(satisfaction_survey.questions):
         return render_template('thank-you.html')
     else:
         return redirect(f'/questions/{len(session["responses"])}')
